@@ -1,0 +1,70 @@
+﻿@using Lotto_LINQ.Models;
+@model Lotto_LINQ.Services.LottoCount
+
+<style>
+    .table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+</style>
+
+
+@using (Html.BeginForm("Lotto", "LottoCounts"))
+{
+    <center><h3>Zliczone wystąpienia każdej liczby:</h3></center>
+    <br />
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Liczba</td>
+            <td><center>Ilość wystąpień</center></td>
+        </tr>
+        @foreach (var item in Model.dictionaryOfCounts)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td><center>@item.Value</center></td>
+            </tr>
+        }
+    </table>
+
+    <br />
+    <center><h4>Liczba wylosowana najwięcej razy: @Model.mostPopularNumber.</h4></center>
+
+    <center>
+        <h4>
+            Sześć liczb wylosowanych najmniej razy:
+
+            @for (int i = 0; i < 5; i++)
+            {
+                @String.Format(" {0},", Model.leastPopularNumbers[i]);
+            }
+            @Model.leastPopularNumbers[5].
+        </h4>
+    </center>
+    <center><h4>Suma liczb ze wszystkich losowań: @Model.sumOfAllDraws.</h4></center>
+    <br />
+
+    <center><h3>Średnie dla poszczególnych losowań: </h3></center>
+    <br />
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Numer losowania</td>
+            <td><center>Średnia z wylosowanych liczb</center></td>
+        </tr>
+        @foreach (var item in Model.dictonaryOfAverages)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td><center>@item.Value</center></td>
+            </tr>
+        }
+    </table>
+
+}
+
+
+
+
